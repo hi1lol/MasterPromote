@@ -10,6 +10,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -70,30 +71,41 @@ public class MasterPromotePermissions
 		else if(activePermissions.equals("PermissionsEx"))
 		{
 			//Bukkit.dispatchCommand(console, "pex user " + player.getName() + " group set " + group);
+			PermissionUser pexuser = PermissionsEx.getUser(player);
+			for(PermissionGroup g : pexuser.getGroups())
+			{
+				pexuser.removeGroup(g);
+			}
+			pexuser.addGroup(group);
 		}
 		else if(activePermissions.equals("GroupManager"))
 		{
 			//Bukkit.dispatchCommand(console, "manuadd " + player.getName() + " " + group);
+			GroupManager gm = (GroupManager) plugin.getServer().getPluginManager().getPlugin("GroupManager");
+			OverloadedWorldHolder perm = gm.getWorldsHolder().getWorldData(player);
+			Group g = perm.getGroup(group);
+			perm.setDefaultGroup(g);
+			perm.reload();
 		}
 		else if(activePermissions.equals("PermissionsBukkit"))
 		{
-			//Bukkit.dispatchCommand(console, "permissions player setgroup " + player.getName() + " " + group);
+			Bukkit.dispatchCommand(console, "permissions player setgroup " + player.getName() + " " + group);
 		}
 		else if(activePermissions.equals("bPermissions"))
 		{
-			//Bukkit.dispatchCommand(console, "world " + player.getWorld().getName());
-			//Bukkit.dispatchCommand(console, "user " + player.getName());
-			//Bukkit.dispatchCommand(console, "user setgroup " + group);
+			Bukkit.dispatchCommand(console, "world " + player.getWorld().getName());
+			Bukkit.dispatchCommand(console, "user " + player.getName());
+			Bukkit.dispatchCommand(console, "user setgroup " + group);
 		}
 		else if(activePermissions.equals("Privileges"))
 		{
-			//Bukkit.dispatchCommand(console, "priv group set " + player.getName() + " " + group);
+			Bukkit.dispatchCommand(console, "priv group set " + player.getName() + " " + group);
 		}
 		else if(activePermissions.equalsIgnoreCase("YAPP"))
 		{
-			//Bukkit.dispatchCommand(console, "yapp o:" + player.getName());
-			//Bukkit.dispatchCommand(console, "yapp +g "  + group);
-			//Bukkit.dispatchCommand(console, "yapp @");
+			Bukkit.dispatchCommand(console, "yapp o:" + player.getName());
+			Bukkit.dispatchCommand(console, "yapp +g "  + group);
+			Bukkit.dispatchCommand(console, "yapp @");
 		}
 	}
 
