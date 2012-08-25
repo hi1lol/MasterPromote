@@ -1,0 +1,24 @@
+name: MasterPromote
+version: 1.5
+author: Sinnoh
+
+main: me.sinnoh.MasterPromote.MasterPromote
+
+softdepend: [PermissionsEx, GroupManager, PermissionsBukkit, bPermissions]
+depend: [Vault]
+
+commands:
+  buyrank:
+    usage: /buyrank [rank]
+  apply:
+    usage: /apply [pw]
+  mpreload:
+    usage: /mpreload
+  token:
+    usage: /token [token]
+  createtoken:
+    usage: /createtoken [group] [usage]
+  confirm:
+    usage: /buyrank [rank]
+  ranks:
+    usage: /ranks
