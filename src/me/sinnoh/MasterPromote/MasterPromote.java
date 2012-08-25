@@ -18,6 +18,7 @@ import me.sinnoh.MasterPromote.Metrics.Metrics.Graph;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -102,14 +103,14 @@ public class MasterPromote extends JavaPlugin
 		//deactivate the plugin if no permissions system is found
 		if(MasterPromotePermissions.activePermissions.equalsIgnoreCase("none")) 
 		{
-			System.out.println("[MasterPromote] No permissionssystem found!");
+			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " No permissionssystem found!");
 			Plugin MP = Bukkit.getPluginManager().getPlugin("MasterPromote");
 			Bukkit.getPluginManager().disablePlugin(MP);
 		}
 		else
 		{
-		System.out.println("[MasterPromote] Using " + MasterPromotePermissions.activePermissions);
-		System.out.println("[MasterPromote] v." + pdfFile.getVersion() + " enabled!");
+		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Using " + MasterPromotePermissions.activePermissions);
+		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " enabled!");
 		}
 		//Setup Plugin-Metrics
 		setupMetrics();
@@ -125,7 +126,7 @@ public class MasterPromote extends JavaPlugin
 		//Save the HashMap
 		sUtil.saveMap();
 		PluginDescriptionFile pdfFile = this.getDescription();
-		System.out.println("[MasterPromote] v." + pdfFile.getVersion() + " disabled!");
+		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " disabled!");
 	}
 	
 	public void scheduler()
@@ -201,9 +202,10 @@ public class MasterPromote extends JavaPlugin
 			}
 		});
 		metrics.start();
+		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + "PluginMetrics enabled!");
 		}catch(Exception e)
 		{
-			System.out.println("[MasterPromote] Failed to enable Plugin Metrics.");
+			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Failed to enable PluginMetrics");
 		}
 	}
 

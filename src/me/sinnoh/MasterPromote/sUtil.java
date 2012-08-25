@@ -77,5 +77,10 @@ public class sUtil
 		}
 		return false;
 	}
+	
+	public static void log(String msg)
+	{
+		Bukkit.getConsoleSender().sendMessage(msg);
+	}
 
 }
