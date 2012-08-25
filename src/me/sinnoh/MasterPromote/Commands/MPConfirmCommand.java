@@ -4,6 +4,7 @@ import java.util.List;
 
 import me.sinnoh.MasterPromote.MasterPromote;
 import me.sinnoh.MasterPromote.MasterPromotePermissions;
+import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -36,7 +37,7 @@ public class MPConfirmCommand implements CommandExecutor
     					if(plugin.economy.has(player.getName(), price))
     					{
     						plugin.economy.withdrawPlayer(player.getName(), price);
-    						MasterPromotePermissions.promote(player, group);
+    						MasterPromotePermissions.promote(player, group, PROMOTIONTYPE.BOUGHT);
     						String msg = plugin.messages.getString("BoughtRank").replace("&", "\u00A7");
     						player.sendMessage(msg.replace("<group>", group));
     						plugin.confirm.remove(player);

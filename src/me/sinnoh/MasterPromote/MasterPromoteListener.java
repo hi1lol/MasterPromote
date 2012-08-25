@@ -1,6 +1,8 @@
 
 package me.sinnoh.MasterPromote;
 
+import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -42,7 +44,7 @@ public class MasterPromoteListener implements Listener
                 		}
                 		catch(Exception e)
                 		{
-                			player.sendMessage(ChatColor.RED + "[MasterPromote] 3th line has to be a nunber");
+                			player.sendMessage(ChatColor.RED + "[MasterPromote] 3th line has to be an Integer");
                             ItemStack s = new ItemStack(Material.SIGN);
                             s.setAmount(1);
                             event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), s);
@@ -90,7 +92,7 @@ public class MasterPromoteListener implements Listener
         						return;
 	                		}
 	                	}
-	                    MasterPromotePermissions.promote(player, group);
+	                    MasterPromotePermissions.promote(player, group, PROMOTIONTYPE.SIGN);
 	                    String msg = plugin.messages.getString("UsedSign").replace("&", "\247");
 	                    player.sendMessage(msg.replace("<group>", group));
 	                } 

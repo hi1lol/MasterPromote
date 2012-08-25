@@ -13,6 +13,7 @@ import me.sinnoh.MasterPromote.Commands.MPCreatetokenCommand;
 import me.sinnoh.MasterPromote.Commands.MPMPReloadCommand;
 import me.sinnoh.MasterPromote.Commands.MPRanksCommand;
 import me.sinnoh.MasterPromote.Commands.MPTokenCommand;
+import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
 import me.sinnoh.MasterPromote.Metrics.Metrics;
 import me.sinnoh.MasterPromote.Metrics.Metrics.Graph;
 import net.milkbowl.vault.economy.Economy;
@@ -138,7 +139,7 @@ public class MasterPromote extends JavaPlugin
 						{
 							String msg = messages.getString("PromotedAfterTime").replace("<group>", config.getString("Time.Group"));
 							Bukkit.getPlayer(playername).sendMessage(msg.replace("&", "\247"));
-							MasterPromotePermissions.promote(Bukkit.getPlayer(playername), config.getString("Time.Group"));
+							MasterPromotePermissions.promote(Bukkit.getPlayer(playername), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
 							timepromote.remove(playername);
 						}
 						else

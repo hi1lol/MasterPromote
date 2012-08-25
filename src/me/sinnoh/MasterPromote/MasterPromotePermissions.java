@@ -2,6 +2,9 @@ package me.sinnoh.MasterPromote;
 
 
 
+import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent;
+import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
+
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.data.Group;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
@@ -26,6 +29,8 @@ public class MasterPromotePermissions
 	public static Plugin bp = Bukkit.getPluginManager().getPlugin("bPermissions");
 	public static Plugin pr = Bukkit.getPluginManager().getPlugin("Privileges");
 	public static Plugin yp = Bukkit.getPluginManager().getPlugin("YAPP");
+	public static PlayerPromoteEvent event;
+	
 	public static void loadPermission()
 	{
 		if(Bukkit.getPluginManager().isPluginEnabled(pex))
@@ -58,7 +63,7 @@ public class MasterPromotePermissions
 		}
 	}
 	
-	public static void promote(Player player, String group)
+	public static void promote(Player player, String group, PROMOTIONTYPE type)
 	{
 		ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 		if(!plugin.config.getString("PromoteSyntax").equalsIgnoreCase("none"))
@@ -107,6 +112,8 @@ public class MasterPromotePermissions
 			Bukkit.dispatchCommand(console, "yapp +g "  + group);
 			Bukkit.dispatchCommand(console, "yapp @");
 		}
+		event = new PlayerPromoteEvent(player, group, type, activePermissions);
+		Bukkit.getPluginManager().callEvent(event);
 	}
 
 
