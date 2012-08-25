@@ -24,11 +24,13 @@ public class PlayerPromoteEvent extends Event
 		this.ps = PermissionsSystem;
 	}
 
-	@Override
-	public HandlerList getHandlers() 
-	{
-		return handlers;
-	}
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+ 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 	
 	public String getGroup()
 	{
