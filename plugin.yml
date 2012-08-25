@@ -4,7 +4,7 @@ author: Sinnoh
 
 main: me.sinnoh.MasterPromote.MasterPromote
 
-softdepend: [PermissionsEx, GroupManager, PermissionsBukkit, bPermissions]
+softdepend: [PermissionsEx, GroupManager, PermissionsBukkit, bPermissions, Privileges, YAPP]
 depend: [Vault]
 
 commands:
