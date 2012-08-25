@@ -44,7 +44,8 @@ public class MasterPromote extends JavaPlugin
     private Boolean setupEconomy()
     {
         RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-        if (economyProvider != null) {
+        if (economyProvider != null) 
+        {
             economy = economyProvider.getProvider();
         }
 
@@ -82,26 +83,18 @@ public class MasterPromote extends JavaPlugin
 	
 	public void onEnable()
 	{
-		//Initialize the main instance
-		instance = this;
-		//Create/Load the files
-		prepareconfigfiles();
-		//Register the commands
-		commands();
-		//Register the Events
-		this.getServer().getPluginManager().registerEvents(new MasterPromoteListener(), this);
-		//Enable Vault-Economy
-		setupEconomy();
-		//Initialite the PluginDescriptionFile
-		PluginDescriptionFile pdfFile = this.getDescription();
-		//Check for Permissions-Systems
-		MasterPromotePermissions.loadPermission();
-		//Load the HashMap
-		sUtil.loadMap();
-		//Start the scheduler
-		scheduler();
-		//deactivate the plugin if no permissions system is found
-		if(MasterPromotePermissions.activePermissions.equalsIgnoreCase("none")) 
+		
+		instance = this;//Initialize the main instance
+		prepareconfigfiles();//Create/Load the files
+		commands();//Register the commands		
+		this.getServer().getPluginManager().registerEvents(new MasterPromoteListener(), this);//Register the Events		
+		setupEconomy();//Enable Vault-Economy		
+		PluginDescriptionFile pdfFile = this.getDescription();//Initialite the PluginDescriptionFile		
+		MasterPromotePermissions.loadPermission();//Check for Permissions-Systems		
+		sUtil.loadMap();//Load the HashMap from file		
+		scheduler();//Start the scheduler
+		
+		if(MasterPromotePermissions.activePermissions.equalsIgnoreCase("none"))//deactivate the plugin if no permissions system is found 
 		{
 			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " No permissionssystem found!");
 			Plugin MP = Bukkit.getPluginManager().getPlugin("MasterPromote");
@@ -112,8 +105,8 @@ public class MasterPromote extends JavaPlugin
 		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Using " + MasterPromotePermissions.activePermissions);
 		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " enabled!");
 		}
-		//Setup Plugin-Metrics
-		setupMetrics();
+		
+		setupMetrics();//Setup Plugin-Metrics
 
 		
 		
@@ -121,10 +114,8 @@ public class MasterPromote extends JavaPlugin
 	
 	public void onDisable()
 	{
-		//Cancel the SCheduler
-		getServer().getScheduler().cancelTasks(this);
-		//Save the HashMap
-		sUtil.saveMap();
+		getServer().getScheduler().cancelTasks(this);//Cancel the Scheduler
+		sUtil.saveMap();//Save the HashMap
 		PluginDescriptionFile pdfFile = this.getDescription();
 		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " disabled!");
 	}
