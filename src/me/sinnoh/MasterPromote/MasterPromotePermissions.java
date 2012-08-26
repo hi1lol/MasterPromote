@@ -65,6 +65,13 @@ public class MasterPromotePermissions
 	
 	public static void promote(Player player, String group, PROMOTIONTYPE type)
 	{
+		event = new PlayerPromoteEvent(player, group, type, activePermissions);
+		Bukkit.getPluginManager().callEvent(event);
+		if(event.isCanceled())
+		{
+			sUtil.log("PlayerPromotionEvent has been canceled");
+			return;
+		}
 		ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 		if(!plugin.config.getString("PromoteSyntax").equalsIgnoreCase("none"))
 		{
@@ -112,8 +119,6 @@ public class MasterPromotePermissions
 			Bukkit.dispatchCommand(console, "yapp +g "  + group);
 			Bukkit.dispatchCommand(console, "yapp @");
 		}
-		event = new PlayerPromoteEvent(player, group, type, activePermissions);
-		Bukkit.getPluginManager().callEvent(event);
 	}
 
 

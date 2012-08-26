@@ -13,6 +13,7 @@ public class PlayerPromoteEvent extends Event
 	private Player player;
 	private String group;
 	private String ps;
+	private Boolean canceled;
 	
 	
 	
@@ -22,6 +23,7 @@ public class PlayerPromoteEvent extends Event
 		this.player = player;
 		this.group = group;
 		this.ps = PermissionsSystem;
+		this.canceled = false;
 	}
 
     public HandlerList getHandlers() {
@@ -50,6 +52,18 @@ public class PlayerPromoteEvent extends Event
 	public String getPermissionsSystem()
 	{
 		return ps;
+	}
+	
+	
+	public Boolean isCanceled()
+	{
+		return canceled;
+	}
+	
+	
+	public void setCanceled(Boolean cancel)
+	{
+		this.canceled = cancel;
 	}
 	
 	
