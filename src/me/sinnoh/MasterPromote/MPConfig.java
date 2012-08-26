@@ -82,31 +82,61 @@ public class MPConfig
 	
 	public static void updateconfig()
 	{
-		if(!plugin.config.getString("configversion").equals("1.5"))
+		if(plugin.config.getString("configversion").equals(plugin.getDescription().getVersion()))
 		{
-			if(plugin.config.getString("configversion").equals("1.3"))
-			{
-				plugin.config.set("PromoteSyntax", "none");
-				plugin.config.set("configversion", "1.4.1");
-			}
-			saveYamls();
-			if(plugin.config.getString("configversion").equals("1.4.1"))
-			{
-				plugin.config.set("configversion", "1.4.2");
-			}
-			saveYamls();
-			if(plugin.config.getString("configversion").equals("1.4.2"))
-			{
-				plugin.config.set("configversion", "1.4.3");
-			}
-			saveYamls();
-			if(plugin.config.getString("configversion").equals("1.4.3"))
-			{
-				plugin.config.set("Time.CountOffline", Boolean.FALSE);
-				plugin.config.set("configversion", "1.5");
-			}
-			saveYamls();
+			plugin.config.set("configversion", plugin.getDescription().getVersion());
 		}
+		if(plugin.config.getString("Apply.Enabled") == null)
+		{
+			plugin.config.set("Apply.Enabled", true);
+		}
+		if(plugin.config.getString("Apply.Password") == null)
+		{
+			plugin.config.set("Apply.Password", "test");
+		}
+		if(plugin.config.getString("Apply.Defaultgroup") == null)
+		{
+			plugin.config.set("Apply.Defaultgroup", "default");
+		}
+		if(plugin.config.getString("Apply.Group") == null)
+		{
+			plugin.config.set("Apply.Group", "Member");
+		}
+		if(plugin.config.getString("Apply.Freeze") == null)
+		{
+			plugin.config.set("Apply.Freeze", false);
+		}
+		if(plugin.config.getString("Apply.Mute") == null)
+		{
+			plugin.config.set("Apply.Mute", false);
+		}
+		if(plugin.config.getString("Apply.KickWrongPW") == null)
+		{
+			plugin.config.set("Apply.KickWrongPW", true);
+		}
+		
+		if(plugin.config.getString("Time.Enabled") == null)
+		{
+			plugin.config.set("Time.Enabled", false);
+		}
+		if(plugin.config.getString("Time.Group") == null)
+		{
+			plugin.config.set("Time.Group", "Member");
+		}
+		if(plugin.config.getString("Time.Time") == null)
+		{
+			plugin.config.set("Time.Time", 10);
+		}
+		if(plugin.config.getString("Time.CountOffline") == null)
+		{
+			plugin.config.set("Time.CountOffline", false);
+		}
+		
+		if(plugin.config.getString("PromoteSyntax") == null)
+		{
+			plugin.config.set("PromoteSyntax", "none");
+		}
+		
 		if(plugin.config.getString("token") != null)
 		{
 			for(String token : plugin.config.getConfigurationSection("token").getKeys(false))
@@ -117,8 +147,8 @@ public class MPConfig
 				plugin.token.set("token." + token + ".group", group);
 			}
 			plugin.config.set("token", null);
-			saveYamls();
 		}
+		saveYamls();
 
 	}
 	
