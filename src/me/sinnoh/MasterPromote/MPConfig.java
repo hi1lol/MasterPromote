@@ -82,7 +82,7 @@ public class MPConfig
 	
 	public static void updateconfig()
 	{
-		if(plugin.config.getString("configversion").equals(plugin.getDescription().getVersion()))
+		if(!plugin.config.getString("configversion").equals(plugin.getDescription().getVersion()))
 		{
 			plugin.config.set("configversion", plugin.getDescription().getVersion());
 		}
