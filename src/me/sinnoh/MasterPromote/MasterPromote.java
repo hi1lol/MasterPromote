@@ -194,7 +194,7 @@ public class MasterPromote extends JavaPlugin
 			}
 		});
 		metrics.start();
-		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + "PluginMetrics enabled!");
+		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " PluginMetrics enabled!");
 		}catch(Exception e)
 		{
 			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Failed to enable PluginMetrics");
