@@ -157,9 +157,9 @@ public class MasterPromoteListener implements Listener
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event)
     {
+        Player player = event.getPlayer();
         if(plugin.config.getBoolean("Apply.Enabled"))
         {
-            Player player = event.getPlayer();
             String group = plugin.config.getString("Apply.Group");
             if(plugin.config.getBoolean("Apply.Mute") && !player.hasPermission("MasterPromote.member"))
             {
@@ -169,6 +169,16 @@ public class MasterPromoteListener implements Listener
                 String msg2 = msg1.replace("<group>", group);
                 player.sendMessage(msg2);
             }
+        }
+        if(plugin.config.getBoolean("Apply.BlockPWinChat"))
+        {
+        	if(!player.hasPermission("MasterPromote.canwritepassword"))
+        	{
+        		if(event.getMessage().contains(plugin.config.getString("Apply.Password")))
+        		{
+        			event.setMessage(event.getMessage().replace(plugin.config.getString("Apply.Password"), "*****"));
+        		}
+        	}
         }
     }
     

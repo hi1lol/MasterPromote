@@ -114,6 +114,10 @@ public class MPConfig
 		{
 			plugin.config.set("Apply.KickWrongPW", true);
 		}
+		if(plugin.config.getString("Apply.BlockPWinChat") == null)
+		{
+			plugin.config.set("Apply.BlockPWinChat", false);
+		}
 		
 		if(plugin.config.getString("Time.Enabled") == null)
 		{

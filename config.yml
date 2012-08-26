@@ -8,6 +8,7 @@ Apply:
     Freeze: false
     Mute: false
     KickWrongPW: true
+    BlockPWinChat: false
 #This are the settings for the timed promotion:
 Time:
     Enabled: false 
