@@ -23,30 +23,30 @@ public class MPTokenCommand implements CommandExecutor
 	    	if(sender instanceof Player)
 	    	{
 	    		Player player = (Player) sender;
-	    		if(plugin.config.contains("token." + args[0]))
+	    		if(plugin.token.contains("token." + args[0]))
 	    		{
 	    			if(player.hasPermission("MasterPromote.token.use." + args[0]))
 	    			{
-	    				String group = plugin.config.getString("token." + args[0] + ".group");
+	    				String group = plugin.token.getString("token." + args[0] + ".group");
 	    				MasterPromotePermissions.promote(player, group, PROMOTIONTYPE.TOKEN);
 	    				String msg = plugin.messages.getString("TokenUse").replace("<group>", group);
 						player.sendMessage(msg.replace("&", "\u00A7"));
 						System.out.println("[PLAYER_COMMAND] " + player.getName() + ": /token");
 						System.out.println("[MasterPromote]Player " + player.getName() + " has used token " + args[0] + " and has been promotet to " + group + "!");
-						String usage = plugin.config.getString("token." + args[0] + ".usage");
+						String usage = plugin.token.getString("token." + args[0] + ".usage");
 						int u = new Integer(usage);
 						if(u >0)
 						{
 							if(u == 1)
 							{
-								plugin.config.set("token." + args[0],null );
+								plugin.token.set("token." + args[0],null );
 								MPConfig.saveYamls();
 							}
 							else
 							{
 								u--;
 								String us = String.valueOf(u);
-								plugin.config.set("token." + args[0] + ".usage", us);
+								plugin.token.set("token." + args[0] + ".usage", us);
 							}
 							MPConfig.saveYamls();
 							return true;

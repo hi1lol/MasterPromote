@@ -30,8 +30,8 @@ public class MPCreatetokenCommand implements CommandExecutor
     					Integer.parseInt(args[1]);
        				 	Random r = new Random();
        				 	String token = Long.toString(Math.abs(r.nextLong()), 36);
-       				 	plugin.config.set("token." + token + ".usage", args[1]);
-       				 	plugin.config.set("token." + token + ".group", args[0]);
+       				 	plugin.token.set("token." + token + ".usage", args[1]);
+       				 	plugin.token.set("token." + token + ".group", args[0]);
        				 	MPConfig.saveYamls();
        				 	String msg = plugin.messages.getString("CreateToken").replace("<token>", token);
        				 	String msg2 = msg.replace("<group>", args[0]);
@@ -62,8 +62,8 @@ public class MPCreatetokenCommand implements CommandExecutor
 					Integer.parseInt(args[1]);
    				 	Random r = new Random();
    				 	String token = Long.toString(Math.abs(r.nextLong()), 36);
-   				 	plugin.config.set("token." + token + ".usage", args[1]);
-   				 	plugin.config.set("token." + token + ".group", args[0]);
+   				 	plugin.token.set("token." + token + ".usage", args[1]);
+   				 	plugin.token.set("token." + token + ".group", args[0]);
    					MPConfig.saveYamls();
    				 	System.out.println("[MasterPromote]Created token " + token + " for group " + args[0]);
    				 	return true;
