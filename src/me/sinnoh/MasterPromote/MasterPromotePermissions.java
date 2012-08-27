@@ -96,7 +96,7 @@ public class MasterPromotePermissions
 			GroupManager gm = (GroupManager) plugin.getServer().getPluginManager().getPlugin("GroupManager");
 			OverloadedWorldHolder perm = gm.getWorldsHolder().getWorldData(player);
 			Group g = perm.getGroup(group);
-			perm.setDefaultGroup(g);
+			perm.getUser(player.getName()).setGroup(g);
 			perm.reload();
 		}
 		else if(activePermissions.equals("PermissionsBukkit"))

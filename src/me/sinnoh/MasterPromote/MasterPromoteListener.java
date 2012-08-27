@@ -30,7 +30,7 @@ public class MasterPromoteListener implements Listener
         String Line1 = event.getLine(0);
         String Line2 = event.getLine(1);
         String Line3 = event.getLine(2);
-        if(Line1.equals("[Promote]") || Line1.equals(ChatColor.GREEN + "[Promote]"))
+        if(!Line1.equals("[Promote]") && !Line1.equals(ChatColor.GREEN + "[Promote]"))
         {
             if(player.hasPermission("MasterPromote.sign.create") || player.hasPermission("MasterPromote.sign.*") || player.hasPermission("MasterPromote.*"))
             {
