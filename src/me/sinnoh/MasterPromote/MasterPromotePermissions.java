@@ -5,9 +5,6 @@ package me.sinnoh.MasterPromote;
 import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent;
 import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
 
-import org.anjocaido.groupmanager.GroupManager;
-import org.anjocaido.groupmanager.data.Group;
-import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -92,12 +89,7 @@ public class MasterPromotePermissions
 		}
 		else if(activePermissions.equals("GroupManager"))
 		{
-			//Bukkit.dispatchCommand(console, "manuadd " + player.getName() + " " + group);
-			GroupManager gm = (GroupManager) plugin.getServer().getPluginManager().getPlugin("GroupManager");
-			OverloadedWorldHolder perm = gm.getWorldsHolder().getWorldData(player);
-			Group g = perm.getGroup(group);
-			perm.getUser(player.getName()).setGroup(g);
-			perm.reload();
+			Bukkit.dispatchCommand(console, "manuadd " + player.getName() + " " + group);
 		}
 		else if(activePermissions.equals("PermissionsBukkit"))
 		{
