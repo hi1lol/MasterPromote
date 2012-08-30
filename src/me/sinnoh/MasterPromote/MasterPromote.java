@@ -105,9 +105,9 @@ public class MasterPromote extends JavaPlugin
 		{
 		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Using " + MasterPromotePermissions.activePermissions);
 		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " enabled!");
+		setupMetrics();//Setup Plugin-Metrics
 		}
 		
-		setupMetrics();//Setup Plugin-Metrics
 
 		
 		
