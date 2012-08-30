@@ -74,7 +74,7 @@ public class MasterPromote extends JavaPlugin
     	getCommand("token").setExecutor(new MPTokenCommand());
     	getCommand("createtoken").setExecutor(new MPCreatetokenCommand());
     	getCommand("buyrank").setExecutor(new MPBuyrankCommand());
-    	getCommand("confirm").setExecutor(new MPConfirmCommand());
+    	getCommand("mpconfirm").setExecutor(new MPConfirmCommand());
     	getCommand("ranks").setExecutor(new MPRanksCommand());
     }
     

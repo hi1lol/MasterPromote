@@ -152,6 +152,16 @@ public class MPConfig
 			}
 			plugin.config.set("token", null);
 		}
+		
+		
+		if(!plugin.messages.getString("messagesversion").equals(plugin.getDescription().getVersion()))
+		{
+			plugin.messages.set("messagesversion", plugin.getDescription().getVersion());
+		}
+		if(plugin.messages.getString("Confirm").contains("/confirm"))
+		{
+			plugin.messages.getString("Confirm").replace("/confirm", "/mpconfirm");
+		}
 		saveYamls();
 
 	}

@@ -18,7 +18,8 @@ commands:
     usage: /token [token]
   createtoken:
     usage: /createtoken [group] [usage]
-  confirm:
+  mpconfirm:
     usage: /buyrank [rank]
+    aliases: [confirm]
   ranks:
     usage: /ranks
