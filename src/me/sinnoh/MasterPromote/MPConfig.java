@@ -160,7 +160,7 @@ public class MPConfig
 		}
 		if(plugin.messages.getString("Confirm").contains("/confirm"))
 		{
-			plugin.messages.getString("Confirm").replace("/confirm", "/mpconfirm");
+			plugin.messages.set("Confirm", plugin.messages.getString("Confirm").replace("/confirm", "/mpconfirm"));
 		}
 		saveYamls();
 
