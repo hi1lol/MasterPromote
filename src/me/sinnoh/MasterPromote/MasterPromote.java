@@ -1,7 +1,9 @@
 package me.sinnoh.MasterPromote;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -129,24 +131,32 @@ public class MasterPromote extends JavaPlugin
 			@Override
 			public void run() 
 			{
-				for(String playername : timepromote.keySet())
+			    List<String> promotedPlayers = new ArrayList<String>();		
+				synchronized (timepromote) 
 				{
-					if(sUtil.playerisonline(playername) || config.getBoolean("Time.CountOffline"))
+					for(String playername : timepromote.keySet())
 					{
-						Long timeleft = timepromote.get(playername);
-						timeleft = timeleft -1;
-						if(timeleft <=0)
+						if(sUtil.playerisonline(playername) || config.getBoolean("Time.CountOffline"))
 						{
-							String msg = messages.getString("PromotedAfterTime").replace("<group>", config.getString("Time.Group"));
-							Bukkit.getPlayer(playername).sendMessage(msg.replace("&", "\247"));
-							MasterPromotePermissions.promote(Bukkit.getPlayer(playername), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
-							timepromote.remove(playername);
+							Long timeleft = timepromote.get(playername);
+							timeleft = timeleft -1;
+							if(timeleft <=0)
+							{
+								String msg = messages.getString("PromotedAfterTime").replace("<group>", config.getString("Time.Group"));
+								Bukkit.getPlayer(playername).sendMessage(msg.replace("&", "\247"));
+								MasterPromotePermissions.promote(Bukkit.getPlayer(playername), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
+								promotedPlayers.add(playername);
+							}
+							else
+							{
+								promotedPlayers.add(playername);
+							timepromote.put(playername, timeleft);
+							}
 						}
-						else
-						{
+					}
+					for(String playername : promotedPlayers)
+					{
 						timepromote.remove(playername);
-						timepromote.put(playername, timeleft);
-						}
 					}
 				}
 			}
