@@ -217,7 +217,7 @@ public class Metrics {
 *
 * @return True if statistics measuring is running, otherwise false.
 */
-    public boolean start() {
+	public boolean start() {
         synchronized (optOutLock) {
             // Did we opt out?
             if (isOptOut()) {
@@ -230,7 +230,7 @@ public class Metrics {
             }
 
             // Begin hitting the server with glorious data
-            taskId = plugin.getServer().getScheduler().scheduleAsyncRepeatingTask(plugin, new Runnable() {
+            taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
                 private boolean firstPost = true;
 
