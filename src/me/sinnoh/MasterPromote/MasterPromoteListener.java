@@ -78,7 +78,7 @@ public class MasterPromoteListener implements Listener
 	            Sign sign = (Sign)event.getClickedBlock().getState();
 	            String group = sign.getLine(1);
 	            if(sign.getLine(0).equals(ChatColor.GREEN + "[Promote]"))
-	                if(player.hasPermission("MasterPromote.sign.use") || player.hasPermission("MasterPromote.sign.*") || player.hasPermission("MasterPromote.*"))
+	                if(player.hasPermission("MasterPromote.sign.use." + group) || player.hasPermission("MasterPromote.sign.use.all"))
 	                {
 	                	if(!sign.getLine(2).equals(""))
 	                	{
@@ -115,14 +115,12 @@ public class MasterPromoteListener implements Listener
             if(!player.hasPermission("MasterPromote.member"))
             {
                 String msg = plugin.messages.getString("Join").replace("&", "\247");
-                String msg1 = msg.replace("<player>", player.getName());
-                String msg2 = msg1.replace("<group>", group);
-                String msg3 = msg2.replace("<password>", pw);
-                String msgs[];
-                int j = (msgs = msg3.split("<newline>")).length;
-                for(int i = 0; i < j; i++)
+                msg = msg.replace("<group>", group);
+                msg = msg.replace("<password>", pw);
+                String[] msgs = msg.split("<newline>");
+                for(String s : msgs)
                 {
-                    player.sendMessage(msgs[i]);
+                    player.sendMessage(s);
                 }
 
             }
