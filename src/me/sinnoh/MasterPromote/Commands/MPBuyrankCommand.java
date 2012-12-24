@@ -23,14 +23,13 @@ public class MPBuyrankCommand implements CommandExecutor
     		{
     			@SuppressWarnings("unchecked")
 				List<String> ranks = (List<String>) plugin.config.getList("Ranks");
-    			Object[] array = ranks.toArray();
-    			for(int i = 0; i<array.length;i++)
+    			for(String s : ranks)
     			{
-    				String[] rank = array[i].toString().split(",");
+    				String[] rank = s.split(",");
     				String group = rank[0];
     				Double price = Double.parseDouble(rank[1]);
     				
-        			if(args[0].equals(group))
+        			if(args[0].equalsIgnoreCase((group)))
         			{
         				if(player.hasPermission("MasterPromote.rank.buy." + group))
         				{
