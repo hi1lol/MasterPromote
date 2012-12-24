@@ -1,4 +1,4 @@
-configversion: "1.5"
+configversion: "1.6"
 #This are the settings for the Application system:
 Apply:
     Enabled: true
