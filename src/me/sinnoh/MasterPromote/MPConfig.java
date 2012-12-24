@@ -1,10 +1,11 @@
 package me.sinnoh.MasterPromote;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.configuration.file.FileConfiguration;
+
 
 
 public class MPConfig 
@@ -19,17 +20,14 @@ public class MPConfig
 			if(!plugin.configFile.exists())
 			{
 				plugin.configFile.getParentFile().mkdirs();
-				copy(plugin.getResource("config.yml"), plugin.configFile);
 			}
 			if(!plugin.messagesFile.exists())
 			{
 				plugin.messagesFile.getParentFile().mkdirs();
-				copy(plugin.getResource("messages.yml"), plugin.messagesFile);
 			}
 			if(!plugin.tokenFile.exists())
 			{
 				plugin.tokenFile.getParentFile().mkdirs();
-				copy(plugin.getResource("token.yml"), plugin.tokenFile);
 			}
 		}
 		catch(Exception e)
@@ -38,32 +36,15 @@ public class MPConfig
 		}
 	}
 	
-	public static void copy(InputStream in, File file)
+	public static void loadYamls() 
 	{
 	    try 
 	    {
-	        OutputStream out = new FileOutputStream(file);
-	        byte[] buf = new byte[1024];
-	        int len;
-	        while((len=in.read(buf))>0)
-	        {
-	            out.write(buf,0,len);
-	        }
-	        out.close();
-	        in.close();
-	    } catch (Exception e) 
-	    {
-	        e.printStackTrace();
-	    }
-	}
-	
-	public static void loadYamls() 
-	{
-	    try {
 	        plugin.config.load(plugin.configFile);
 	        plugin.messages.load(plugin.messagesFile);
 	        plugin.token.load(plugin.tokenFile);
-	    } catch (Exception e) {
+	    }catch (Exception e) 
+	    {
 	        e.printStackTrace();
 	    }
 	}
@@ -82,90 +63,48 @@ public class MPConfig
 	
 	public static void updateconfig()
 	{
-		if(!plugin.config.getString("configversion").equals(plugin.getDescription().getVersion()))
-		{
-			plugin.config.set("configversion", plugin.getDescription().getVersion());
-		}
-		if(plugin.config.getString("Apply.Enabled") == null)
-		{
-			plugin.config.set("Apply.Enabled", true);
-		}
-		if(plugin.config.getString("Apply.Password") == null)
-		{
-			plugin.config.set("Apply.Password", "test");
-		}
-		if(plugin.config.getString("Apply.Defaultgroup") == null)
-		{
-			plugin.config.set("Apply.Defaultgroup", "default");
-		}
-		if(plugin.config.getString("Apply.Group") == null)
-		{
-			plugin.config.set("Apply.Group", "Member");
-		}
-		if(plugin.config.getString("Apply.Freeze") == null)
-		{
-			plugin.config.set("Apply.Freeze", false);
-		}
-		if(plugin.config.getString("Apply.Mute") == null)
-		{
-			plugin.config.set("Apply.Mute", false);
-		}
-		if(plugin.config.getString("Apply.KickWrongPW") == null)
-		{
-			plugin.config.set("Apply.KickWrongPW", true);
-		}
-		if(plugin.config.getString("Apply.BlockPWinChat") == null)
-		{
-			plugin.config.set("Apply.BlockPWinChat", false);
-		}
+		addDefault(plugin.config, "Apply.Enabled", true);
+		addDefault(plugin.config, "Apply.Password", "test");
+		addDefault(plugin.config, "Apply.Defaultgroup", "default");
+		addDefault(plugin.config, "Apply.Group", "Member");
+		addDefault(plugin.config, "Apply.Freeze", false);
+		addDefault(plugin.config, "Apply.Mute", false);
+		addDefault(plugin.config, "Apply.KickWrongPW", false);
+		addDefault(plugin.config, "Apply.BlockPWinChat", false);
+		addDefault(plugin.config, "Time.Enabled", false);
+		addDefault(plugin.config, "Time.Group", false);
+		addDefault(plugin.config, "Time.Time", 10);
+		addDefault(plugin.config, "Time.CountOffline", false);
+		List<String> ranks = new ArrayList<String>();
+		ranks.add("Admin,5");
+		addDefault(plugin.config, "Ranks", ranks);
+		addDefault(plugin.config, "PromoteSyntax", "none");
 		
-		if(plugin.config.getString("Time.Enabled") == null)
-		{
-			plugin.config.set("Time.Enabled", false);
-		}
-		if(plugin.config.getString("Time.Group") == null)
-		{
-			plugin.config.set("Time.Group", "Member");
-		}
-		if(plugin.config.getString("Time.Time") == null)
-		{
-			plugin.config.set("Time.Time", 10);
-		}
-		if(plugin.config.getString("Time.CountOffline") == null)
-		{
-			plugin.config.set("Time.CountOffline", false);
-		}
-		
-		if(plugin.config.getString("PromoteSyntax") == null)
-		{
-			plugin.config.set("PromoteSyntax", "none");
-		}
-		
-		if(plugin.config.getString("token") != null)
-		{
-			for(String token : plugin.config.getConfigurationSection("token").getKeys(false))
-			{
-				String usage = plugin.config.getString("token." + token + ".usage"); 
-				String group = plugin.config.getString("token." + token + ".group"); 
-				plugin.token.set("token." + token + ".usage", usage);
-				plugin.token.set("token." + token + ".group", group);
-			}
-			plugin.config.set("token", null);
-		}
-		
-		
-		if(!plugin.messages.getString("messagesversion").equals(plugin.getDescription().getVersion()))
-		{
-			plugin.messages.set("messagesversion", plugin.getDescription().getVersion());
-		}
-		if(plugin.messages.getString("Confirm").contains("/confirm"))
-		{
-			plugin.messages.set("Confirm", plugin.messages.getString("Confirm").replace("/confirm", "/mpconfirm"));
-		}
+		addDefault(plugin.messages, "NoPermissions", "&cYou do not have permissions to do this!");
+		addDefault(plugin.messages, "CreatedSign", "&a[MasterPromote]Successfull created a promotion sign!");
+		addDefault(plugin.messages, "UsedSign", "&a[MasterPromote]Sucsessfull promoted to <group>!");
+		addDefault(plugin.messages, "UsedPW", "&a[MasterPromote]You have been succsesfully promoted to <group>!");
+		addDefault(plugin.messages, "WrongPW", "&cWrong PW!");
+		addDefault(plugin.messages, "Reload", "&a[MasterPromote]reloaded!");
+		addDefault(plugin.messages, "TokenUse", "&aYou have been succsesfully promoted to <group>!");
+		addDefault(plugin.messages, "CreateToken", "&a[MasterPromote]Created token <token> for <group>!");
+		addDefault(plugin.messages, "Join", "&5<player>, &aplease write /apply [Password] to get Permissions to build!");
+		addDefault(plugin.messages, "Mute", "&cYou are not allowed to chat!");
+		addDefault(plugin.messages, "FunctionDisabled", "&cThis function has been disabled by the server administrator!");
+		addDefault(plugin.messages, "BuyRank", "&5Do you really want to buy <group> for <price>?");
+		addDefault(plugin.messages, "CantBuyRank", "&cYou can not buy this rank!");
+		addDefault(plugin.messages, "NoMoney", "&cYou do not have enought money to buy this rank!");
+		addDefault(plugin.messages, "BoughtRank", "&aBought rank <group>!");
+		addDefault(plugin.messages, "Confirm", "&5Type /mpconfirm to continue");
+		addDefault(plugin.messages, "PromotedAfterTime", "&aYou have been promoted to <group>!");
 		saveYamls();
-
 	}
 	
-	
-
+	private static void addDefault(FileConfiguration f, String path, Object v)
+	{
+		if(f.getString(path) == null)
+		{
+			f.set(path, v);
+		}
+	}
 }
