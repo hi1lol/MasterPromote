@@ -26,10 +26,9 @@ public class MPConfirmCommand implements CommandExecutor
     			String group = plugin.confirm.get(player);
       			@SuppressWarnings("unchecked")
 				List<String> ranks = (List<String>) plugin.config.getList("Ranks");
-    			Object[] array =ranks.toArray();
-    			for(int i = 0; i<array.length;i++)
+    			for(String value : ranks)
     			{
-    				String[] rank = array[i].toString().split(",");
+    				String[] rank = value.split(",");
     				String group1 = rank[0];
     				Double price = Double.parseDouble(rank[1]);
     				if(group.equals(group1))

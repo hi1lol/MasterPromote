@@ -35,7 +35,7 @@ public class MPBuyrankCommand implements CommandExecutor
         				{
         					if(plugin.economy.has(player.getName(), price))
         					{
-			    				plugin.confirm.put(player, args[0]);
+			    				plugin.confirm.put(player, group);
 			    				String msg = plugin.messages.getString("BuyRank").replace("&", "\u00A7");
 			    				if(price == 1)
 			    				{
@@ -45,7 +45,7 @@ public class MPBuyrankCommand implements CommandExecutor
 			    				{
 			    				    msg = msg.replace("<price>", price + " " + plugin.economy.currencyNamePlural());
 			    				}
-			    				player.sendMessage(msg.replace("<group>", args[0]));
+			    				player.sendMessage(msg.replace("<group>", group));
 			    				player.sendMessage(plugin.messages.getString("Confirm").replace("&","\u00A7"));
 								System.out.println("[PLAYER_COMMAND] " + player.getName() + ": /buyrank");
 			    				return true;
