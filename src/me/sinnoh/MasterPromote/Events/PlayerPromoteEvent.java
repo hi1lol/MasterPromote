@@ -77,7 +77,9 @@ public class PlayerPromoteEvent extends Event
 		
 		SIGN,
 		
-		BOUGHT;
+		BOUGHT,
+		
+		OTHER;
 	}
 
 }

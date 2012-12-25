@@ -26,7 +26,6 @@ public class MasterPromotePermissions
 	public static Plugin bp = Bukkit.getPluginManager().getPlugin("bPermissions");
 	public static Plugin pr = Bukkit.getPluginManager().getPlugin("Privileges");
 	public static Plugin yp = Bukkit.getPluginManager().getPlugin("YAPP");
-	public static PlayerPromoteEvent event;
 	
 	public static void loadPermission()
 	{
@@ -62,7 +61,7 @@ public class MasterPromotePermissions
 	
 	public static void promote(Player player, String group, PROMOTIONTYPE type)
 	{
-		event = new PlayerPromoteEvent(player, group, type, activePermissions);
+		PlayerPromoteEvent	event = new PlayerPromoteEvent(player, group, type, activePermissions);
 		Bukkit.getPluginManager().callEvent(event);
 		if(event.isCanceled())
 		{
