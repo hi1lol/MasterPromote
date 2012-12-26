@@ -1,6 +1,6 @@
 package me.sinnoh.MasterPromote.Commands;
 
-import me.sinnoh.MasterPromote.MPConfig;
+import me.sinnoh.MasterPromote.MPPlugin;
 import me.sinnoh.MasterPromote.MasterPromote;
 
 import org.bukkit.command.Command;
@@ -19,13 +19,15 @@ public class MPMPReloadCommand  implements CommandExecutor
     	{
     		Player player = (Player) sender;
     		if(player.hasPermission("MasterPromote.reload"))
+    		{
+    			for(MPPlugin pl : plugin.plugins)
     			{
-    			MPConfig.loadYamls();
+    				pl.reload();
+    			}
     			sender.sendMessage(plugin.messages.getString("Reload").replace("&", "\u00A7"));
 				System.out.println("[PLAYER_COMMAND] " + player.getName() + ": /mpreload");
     			return true;
-
-    			}
+    		}
     		else
     		{
     			player.sendMessage(plugin.messages.getString("NoPermissions").replace("&", "\u00A7"));
@@ -35,7 +37,10 @@ public class MPMPReloadCommand  implements CommandExecutor
     	}
     	else // if commandsender is not a player
     	{
-    	MPConfig.loadYamls();
+    	for(MPPlugin pl : plugin.plugins)
+    	{
+    		pl.reload();
+    	}
     	System.out.println("[MasterPromote]Config succssesfully reloaded!");
     	return true;
     	}

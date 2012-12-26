@@ -30,7 +30,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MasterPromote extends JavaPlugin 
+public class MasterPromote extends JavaPlugin implements MPPlugin
 {
 	public static MasterPromote instance; //main instance
 	public File configFile; //The config.yml file
@@ -41,6 +41,7 @@ public class MasterPromote extends JavaPlugin
 	public FileConfiguration token;
 	public Map<String, Long> timepromote = new HashMap<String, Long>(); //All players who are waiting to get promoted
 	public Map<Player, String>confirm = new HashMap<Player, String>(); // All players who want to buy a rank
+	public List<MPPlugin> plugins = new ArrayList<MPPlugin>();
 	private MasterPromotePermissions phandler;
    
 	//Vault
@@ -67,7 +68,6 @@ public class MasterPromote extends JavaPlugin
 		token = new YamlConfiguration();
 		MPConfig.createdefaults();
 		MPConfig.loadYamls();
-		MPConfig.updateconfig();
     }
     
     public void commands() //register the commands
@@ -98,7 +98,7 @@ public class MasterPromote extends JavaPlugin
 		this.phandler.loadPermission();//Check for Permissions-Systems		
 		sUtil.loadMap();//Load the HashMap from file		
 		scheduler();//Start the scheduler
-		
+		registerMPPlugin(this);
 		if(MasterPromotePermissions.activePermissions.equalsIgnoreCase("none"))//deactivate the plugin if no permissions system is found 
 		{
 			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " No permissionssystem found!");
@@ -217,11 +217,26 @@ public class MasterPromote extends JavaPlugin
 	{
 		return this.phandler;
 	}
-
-
 	
-
+	public void registerMPPlugin(MPPlugin plugin)
+	{
+		if(!this.plugins.contains(plugin))
+		{
+			this.plugins.add(plugin);
+		}
+	}
 	
-
-
+	@Override
+	public Boolean reload() 
+	{
+		try
+		{
+			MPConfig.createdefaults();
+			MPConfig.loadYamls();
+			return true;
+		}catch(Exception e)
+		{
+			return false;
+		}
+	}
 }

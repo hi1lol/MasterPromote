@@ -29,6 +29,7 @@ public class MPConfig
 			{
 				plugin.tokenFile.getParentFile().mkdirs();
 			}
+			updateconfig();
 		}
 		catch(Exception e)
 		{
@@ -61,7 +62,7 @@ public class MPConfig
 	    }
 	}
 	
-	public static void updateconfig()
+	private static void updateconfig()
 	{
 		addDefault(plugin.config, "Apply.Enabled", true);
 		addDefault(plugin.config, "Apply.Password", "test");
@@ -85,7 +86,7 @@ public class MPConfig
 		addDefault(plugin.messages, "UsedSign", "&a[MasterPromote]Sucsessfull promoted to <group>!");
 		addDefault(plugin.messages, "UsedPW", "&a[MasterPromote]You have been succsesfully promoted to <group>!");
 		addDefault(plugin.messages, "WrongPW", "&cWrong PW!");
-		addDefault(plugin.messages, "Reload", "&a[MasterPromote]reloaded!");
+		addDefault(plugin.messages, "Reload", "&a[MasterPromote] reloaded!");
 		addDefault(plugin.messages, "TokenUse", "&aYou have been succsesfully promoted to <group>!");
 		addDefault(plugin.messages, "CreateToken", "&a[MasterPromote]Created token <token> for <group>!");
 		addDefault(plugin.messages, "Join", "&5<player>, &aplease write /apply [Password] to get Permissions to build!");
