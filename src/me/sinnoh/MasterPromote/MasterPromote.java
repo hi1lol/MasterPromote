@@ -259,6 +259,10 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 	@Override
 	public void save()
 	{
+		synchronized (this.timepromote) 
+		{
+			sUtil.saveMap();
+		}
 		sUtil.saveMap();
 	}
 }

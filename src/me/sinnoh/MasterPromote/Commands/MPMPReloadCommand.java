@@ -39,6 +39,7 @@ public class MPMPReloadCommand  implements CommandExecutor
     	{
     	for(MPPlugin pl : plugin.plugins)
     	{
+    		pl.save();
     		pl.reload();
     	}
     	System.out.println("[MasterPromote]Config succssesfully reloaded!");
