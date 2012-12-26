@@ -79,7 +79,11 @@ public class PlayerPromoteEvent extends Event
 		
 		BOUGHT,
 		
-		OTHER;
+		OTHER,
+		
+		KILLS,
+		
+		DEATHS;
 	}
 
 }
