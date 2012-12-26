@@ -4,5 +4,6 @@ public interface MPPlugin
 {
 	
 	public Boolean reload();
+	public void save();
 
 }

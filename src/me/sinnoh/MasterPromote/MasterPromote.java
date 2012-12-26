@@ -39,6 +39,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 	public FileConfiguration config;
 	public FileConfiguration messages;
 	public FileConfiguration token;
+	public Long nextsave;
 	public Map<String, Long> timepromote = new HashMap<String, Long>(); //All players who are waiting to get promoted
 	public Map<Player, String>confirm = new HashMap<Player, String>(); // All players who want to buy a rank
 	public List<MPPlugin> plugins = new ArrayList<MPPlugin>();
@@ -89,14 +90,15 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 	{
 		
 		instance = this;//Initialize the main instance
+		PluginDescriptionFile pdfFile = this.getDescription();//Initialite the PluginDescriptionFile
+		this.phandler = new MasterPromotePermissions();//Initialize PermissionsHandler
 		prepareconfigfiles();//Create/Load the files
 		commands();//Register the commands		
 		this.getServer().getPluginManager().registerEvents(new MasterPromoteListener(), this);//Register the Events		
 		setupEconomy();//Enable Vault-Economy		
-		PluginDescriptionFile pdfFile = this.getDescription();//Initialite the PluginDescriptionFile
-		this.phandler = new MasterPromotePermissions();
-		this.phandler.loadPermission();//Check for Permissions-Systems		
-		sUtil.loadMap();//Load the HashMap from file		
+		this.phandler.loadPermission();//Check for Permissions-Systems	
+		sUtil.loadMap();//Load the HashMap from file
+		this.nextsave = System.currentTimeMillis() + 900000; //Next save
 		scheduler();//Start the scheduler
 		registerMPPlugin(this);
 		if(MasterPromotePermissions.activePermissions.equalsIgnoreCase("none"))//deactivate the plugin if no permissions system is found 
@@ -152,13 +154,27 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 							else
 							{
 								promotedPlayers.add(playername);
-							timepromote.put(playername, timeleft);
+								timepromote.put(playername, timeleft);
 							}
 						}
 					}
 					for(String playername : promotedPlayers)
 					{
 						timepromote.remove(playername);
+					}
+				}
+				if(System.currentTimeMillis() >= nextsave)
+				{
+					nextsave = System.currentTimeMillis() + 900000;
+					for(MPPlugin pl : plugins)
+					{
+						try
+						{
+							pl.save();
+						}catch(Exception e)
+						{
+							continue;
+						}
 					}
 				}
 			}
@@ -238,5 +254,11 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 		{
 			return false;
 		}
+	}
+
+	@Override
+	public void save()
+	{
+		sUtil.saveMap();
 	}
 }
