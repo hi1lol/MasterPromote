@@ -92,7 +92,7 @@ public class MasterPromoteListener implements Listener
         						return;
 	                		}
 	                	}
-	                    MasterPromotePermissions.promote(player, group, PROMOTIONTYPE.SIGN);
+	                    plugin.getPermissionsHandler().promote(player, group, PROMOTIONTYPE.SIGN);
 	                    String msg = plugin.messages.getString("UsedSign").replace("&", "\247");
 	                    player.sendMessage(msg.replace("<group>", group));
 	                } 

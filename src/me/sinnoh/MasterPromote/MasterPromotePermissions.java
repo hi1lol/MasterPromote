@@ -18,16 +18,16 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 public class MasterPromotePermissions 
 {
 	
-	public static MasterPromote plugin = MasterPromote.instance;
+	private static MasterPromote plugin = MasterPromote.instance;
 	public static String activePermissions;
-	public static Plugin pex = Bukkit.getPluginManager().getPlugin("PermissionsEx");
-	public static Plugin gm = Bukkit.getPluginManager().getPlugin("GroupManager");
-	public static Plugin pb = Bukkit.getPluginManager().getPlugin("PermissionsBukkit");
-	public static Plugin bp = Bukkit.getPluginManager().getPlugin("bPermissions");
-	public static Plugin pr = Bukkit.getPluginManager().getPlugin("Privileges");
-	public static Plugin yp = Bukkit.getPluginManager().getPlugin("YAPP");
+	private static Plugin pex = Bukkit.getPluginManager().getPlugin("PermissionsEx");
+	private static Plugin gm = Bukkit.getPluginManager().getPlugin("GroupManager");
+	private static Plugin pb = Bukkit.getPluginManager().getPlugin("PermissionsBukkit");
+	private static Plugin bp = Bukkit.getPluginManager().getPlugin("bPermissions");
+	private static Plugin pr = Bukkit.getPluginManager().getPlugin("Privileges");
+	private static Plugin yp = Bukkit.getPluginManager().getPlugin("YAPP");
 	
-	public static void loadPermission()
+	public void loadPermission()
 	{
 		if(Bukkit.getPluginManager().isPluginEnabled(pex))
 		{
@@ -59,7 +59,7 @@ public class MasterPromotePermissions
 		}
 	}
 	
-	public static void promote(Player player, String group, PROMOTIONTYPE type)
+	public void promote(Player player, String group, PROMOTIONTYPE type)
 	{
 		PlayerPromoteEvent	event = new PlayerPromoteEvent(player, group, type, activePermissions);
 		Bukkit.getPluginManager().callEvent(event);

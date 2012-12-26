@@ -2,7 +2,6 @@ package me.sinnoh.MasterPromote.Commands;
 
 
 import me.sinnoh.MasterPromote.MasterPromote;
-import me.sinnoh.MasterPromote.MasterPromotePermissions;
 import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
 
 import org.bukkit.ChatColor;
@@ -32,7 +31,7 @@ public class MPApplyCommand implements CommandExecutor
 					{
 						if(args[0].equals(pw))
 						{
-							MasterPromotePermissions.promote(player, group, PROMOTIONTYPE.APPLY);
+							plugin.getPermissionsHandler().promote(player, group, PROMOTIONTYPE.APPLY);
 							String msg = plugin.messages.getString("UsedPW").replace("&", "\u00A7");
 							player.sendMessage(msg.replace("<group>", group));
 							System.out.println("[PLAYER_COMMAND] " + player.getName() + ": /apply");

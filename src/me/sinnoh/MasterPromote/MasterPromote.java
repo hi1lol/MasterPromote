@@ -41,6 +41,7 @@ public class MasterPromote extends JavaPlugin
 	public FileConfiguration token;
 	public Map<String, Long> timepromote = new HashMap<String, Long>(); //All players who are waiting to get promoted
 	public Map<Player, String>confirm = new HashMap<Player, String>(); // All players who want to buy a rank
+	private MasterPromotePermissions phandler;
    
 	//Vault
 	public Economy economy = null;
@@ -92,8 +93,9 @@ public class MasterPromote extends JavaPlugin
 		commands();//Register the commands		
 		this.getServer().getPluginManager().registerEvents(new MasterPromoteListener(), this);//Register the Events		
 		setupEconomy();//Enable Vault-Economy		
-		PluginDescriptionFile pdfFile = this.getDescription();//Initialite the PluginDescriptionFile		
-		MasterPromotePermissions.loadPermission();//Check for Permissions-Systems		
+		PluginDescriptionFile pdfFile = this.getDescription();//Initialite the PluginDescriptionFile
+		this.phandler = new MasterPromotePermissions();
+		this.phandler.loadPermission();//Check for Permissions-Systems		
 		sUtil.loadMap();//Load the HashMap from file		
 		scheduler();//Start the scheduler
 		
@@ -144,7 +146,7 @@ public class MasterPromote extends JavaPlugin
 							{
 								String msg = messages.getString("PromotedAfterTime").replace("<group>", config.getString("Time.Group"));
 								Bukkit.getPlayer(playername).sendMessage(msg.replace("&", "\247"));
-								MasterPromotePermissions.promote(Bukkit.getPlayer(playername), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
+								getPermissionsHandler().promote(Bukkit.getPlayer(playername), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
 								promotedPlayers.add(playername);
 							}
 							else
@@ -209,6 +211,11 @@ public class MasterPromote extends JavaPlugin
 		{
 			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Failed to enable PluginMetrics");
 		}
+	}
+	
+	public MasterPromotePermissions getPermissionsHandler()
+	{
+		return this.phandler;
 	}
 
 

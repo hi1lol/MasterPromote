@@ -2,7 +2,6 @@ package me.sinnoh.MasterPromote.Commands;
 
 import me.sinnoh.MasterPromote.MPConfig;
 import me.sinnoh.MasterPromote.MasterPromote;
-import me.sinnoh.MasterPromote.MasterPromotePermissions;
 import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
 
 import org.bukkit.ChatColor;
@@ -28,7 +27,7 @@ public class MPTokenCommand implements CommandExecutor
 	    			if(player.hasPermission("MasterPromote.token.use." + args[0]))
 	    			{
 	    				String group = plugin.token.getString("token." + args[0] + ".group");
-	    				MasterPromotePermissions.promote(player, group, PROMOTIONTYPE.TOKEN);
+	    				plugin.getPermissionsHandler().promote(player, group, PROMOTIONTYPE.TOKEN);
 	    				String msg = plugin.messages.getString("TokenUse").replace("<group>", group);
 						player.sendMessage(msg.replace("&", "\u00A7"));
 						System.out.println("[PLAYER_COMMAND] " + player.getName() + ": /token");
