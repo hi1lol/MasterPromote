@@ -22,7 +22,6 @@ import me.sinnoh.MasterPromote.Metrics.Metrics.Graph;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -45,6 +44,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 	public Map<Player, String>confirm = new HashMap<Player, String>(); // All players who want to buy a rank
 	public List<MPPlugin> plugins = new ArrayList<MPPlugin>();
 	private MasterPromotePermissions phandler;
+	public Boolean isVault;
    
 	//Vault
 	public Economy economy = null;
@@ -55,7 +55,6 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
         {
             economy = economyProvider.getProvider();
         }
-
         return (economy != null);
     }
     //Vault end
@@ -95,7 +94,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 		this.phandler = new MasterPromotePermissions();//Initialize PermissionsHandler
 		prepareconfigfiles();//Create/Load the files
 		commands();//Register the commands		
-		this.getServer().getPluginManager().registerEvents(new MasterPromoteListener(), this);//Register the Events		
+		this.getServer().getPluginManager().registerEvents(new MasterPromoteListener(), this);//Register the Events	
 		setupEconomy();//Enable Vault-Economy		
 		this.phandler.loadPermission();//Check for Permissions-Systems	
 		sUtil.loadMap();//Load the HashMap from file
@@ -104,14 +103,14 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 		registerMPPlugin(this);
 		if(this.phandler.activePermissions.equalsIgnoreCase("none"))//deactivate the plugin if no permissions system is found 
 		{
-			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " No permissionssystem found!");
+			sUtil.log("No permissionssystem found!");
 			Plugin MP = Bukkit.getPluginManager().getPlugin("MasterPromote");
 			Bukkit.getPluginManager().disablePlugin(MP);
 		}
 		else
 		{
-		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Using " + this.phandler.activePermissions);
-		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " enabled!");
+		sUtil.log("Using " + this.phandler.activePermissions);
+		sUtil.log("v." + pdfFile.getVersion() + " enabled!");
 		setupMetrics();//Setup Plugin-Metrics
 		}
 		
@@ -125,7 +124,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 		getServer().getScheduler().cancelTasks(this);//Cancel the Scheduler
 		sUtil.saveMap();//Save the HashMap
 		PluginDescriptionFile pdfFile = this.getDescription();
-		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " disabled!");
+		sUtil.log("v." + pdfFile.getVersion() + " disabled!");
 	}
 	
 	public void scheduler()
@@ -223,10 +222,10 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 			}
 		});
 		metrics.start();
-		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " PluginMetrics enabled!");
+		sUtil.log("PluginMetrics enabled!");
 		}catch(Exception e)
 		{
-			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Failed to enable PluginMetrics");
+			sUtil.log("Failed to enable PluginMetrics");
 		}
 	}
 	
