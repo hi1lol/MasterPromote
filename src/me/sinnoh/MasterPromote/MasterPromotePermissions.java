@@ -18,44 +18,44 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 public class MasterPromotePermissions 
 {
 	
-	private static MasterPromote plugin = MasterPromote.instance;
-	public static String activePermissions;
-	private static Plugin pex = Bukkit.getPluginManager().getPlugin("PermissionsEx");
-	private static Plugin gm = Bukkit.getPluginManager().getPlugin("GroupManager");
-	private static Plugin pb = Bukkit.getPluginManager().getPlugin("PermissionsBukkit");
-	private static Plugin bp = Bukkit.getPluginManager().getPlugin("bPermissions");
-	private static Plugin pr = Bukkit.getPluginManager().getPlugin("Privileges");
-	private static Plugin yp = Bukkit.getPluginManager().getPlugin("YAPP");
+	private MasterPromote plugin = MasterPromote.instance;
+	public String activePermissions;
+	private Plugin pex = Bukkit.getPluginManager().getPlugin("PermissionsEx");
+	private Plugin gm = Bukkit.getPluginManager().getPlugin("GroupManager");
+	private Plugin pb = Bukkit.getPluginManager().getPlugin("PermissionsBukkit");
+	private Plugin bp = Bukkit.getPluginManager().getPlugin("bPermissions");
+	private Plugin pr = Bukkit.getPluginManager().getPlugin("Privileges");
+	private Plugin yp = Bukkit.getPluginManager().getPlugin("YAPP");
 	
 	public void loadPermission()
 	{
 		if(Bukkit.getPluginManager().isPluginEnabled(pex))
 		{
-			MasterPromotePermissions.activePermissions = "PermissionsEx";
+			this.activePermissions = "PermissionsEx";
 		}
 		else if(Bukkit.getPluginManager().isPluginEnabled(gm))
 		{
-			MasterPromotePermissions.activePermissions = "GroupManager";
+			this.activePermissions = "GroupManager";
 		}
 		else if(Bukkit.getPluginManager().isPluginEnabled(pb))
 		{
-			MasterPromotePermissions.activePermissions = "PermissionsBukkit";
+			this.activePermissions = "PermissionsBukkit";
 		}
 		else if(Bukkit.getPluginManager().isPluginEnabled(bp))
 		{
-			MasterPromotePermissions.activePermissions = "bPermissions";
+			this.activePermissions = "bPermissions";
 		}
 		else if(Bukkit.getPluginManager().isPluginEnabled(pr))
 		{
-			MasterPromotePermissions.activePermissions = "Privileges";
+			this.activePermissions = "Privileges";
 		}
 		else if(Bukkit.getPluginManager().isPluginEnabled(yp))
 		{
-			MasterPromotePermissions.activePermissions = "YAPP";
+			this.activePermissions = "YAPP";
 		}
 		else
 		{
-			MasterPromotePermissions.activePermissions = "none";
+			this.activePermissions = "none";
 		}
 	}
 	

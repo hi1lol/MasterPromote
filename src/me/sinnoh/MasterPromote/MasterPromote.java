@@ -39,7 +39,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 	public FileConfiguration config;
 	public FileConfiguration messages;
 	public FileConfiguration token;
-	public Long nextsave;
+	public Long nextsave;//Next autosave
 	public Map<String, Long> timepromote = new HashMap<String, Long>(); //All players who are waiting to get promoted
 	public Map<Player, String>confirm = new HashMap<Player, String>(); // All players who want to buy a rank
 	public List<MPPlugin> plugins = new ArrayList<MPPlugin>();
@@ -101,7 +101,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 		this.nextsave = System.currentTimeMillis() + 900000; //Next save
 		scheduler();//Start the scheduler
 		registerMPPlugin(this);
-		if(MasterPromotePermissions.activePermissions.equalsIgnoreCase("none"))//deactivate the plugin if no permissions system is found 
+		if(this.phandler.activePermissions.equalsIgnoreCase("none"))//deactivate the plugin if no permissions system is found 
 		{
 			sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " No permissionssystem found!");
 			Plugin MP = Bukkit.getPluginManager().getPlugin("MasterPromote");
@@ -109,7 +109,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 		}
 		else
 		{
-		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Using " + MasterPromotePermissions.activePermissions);
+		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " Using " + this.phandler.activePermissions);
 		sUtil.log(ChatColor.DARK_PURPLE + "[MasterPromote]" + ChatColor.GRAY + " v." + pdfFile.getVersion() + " enabled!");
 		setupMetrics();//Setup Plugin-Metrics
 		}
