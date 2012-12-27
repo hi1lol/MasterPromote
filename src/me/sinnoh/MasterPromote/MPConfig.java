@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 
 
+
 public class MPConfig 
 {
 	public static MasterPromote plugin = MasterPromote.instance;
@@ -29,7 +30,6 @@ public class MPConfig
 			{
 				plugin.tokenFile.getParentFile().mkdirs();
 			}
-			updateconfig();
 		}
 		catch(Exception e)
 		{
@@ -44,6 +44,7 @@ public class MPConfig
 	        plugin.config.load(plugin.configFile);
 	        plugin.messages.load(plugin.messagesFile);
 	        plugin.token.load(plugin.tokenFile);
+	        updateconfig();
 	    }catch (Exception e) 
 	    {
 	        e.printStackTrace();
