@@ -1,7 +1,7 @@
 package me.sinnoh.MasterPromote.Commands;
 
-import me.sinnoh.MasterPromote.MPPlugin;
 import me.sinnoh.MasterPromote.MasterPromote;
+import me.sinnoh.MasterPromote.Api.MPPlugin;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

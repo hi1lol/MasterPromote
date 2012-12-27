@@ -2,8 +2,8 @@ package me.sinnoh.MasterPromote;
 
 
 
-import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent;
-import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
+import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent;
+import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent.PROMOTIONTYPE;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;

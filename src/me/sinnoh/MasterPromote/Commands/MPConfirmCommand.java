@@ -3,7 +3,7 @@ package me.sinnoh.MasterPromote.Commands;
 import java.util.List;
 
 import me.sinnoh.MasterPromote.MasterPromote;
-import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
+import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent.PROMOTIONTYPE;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,4 +1,4 @@
-package me.sinnoh.MasterPromote.Events;
+package me.sinnoh.MasterPromote.Api;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

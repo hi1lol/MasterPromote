@@ -8,6 +8,8 @@ import java.util.Map;
 
 
 
+import me.sinnoh.MasterPromote.Api.MPPlugin;
+import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent.PROMOTIONTYPE;
 import me.sinnoh.MasterPromote.Commands.MPApplyCommand;
 import me.sinnoh.MasterPromote.Commands.MPBuyrankCommand;
 import me.sinnoh.MasterPromote.Commands.MPConfirmCommand;
@@ -15,7 +17,6 @@ import me.sinnoh.MasterPromote.Commands.MPCreatetokenCommand;
 import me.sinnoh.MasterPromote.Commands.MPMPReloadCommand;
 import me.sinnoh.MasterPromote.Commands.MPRanksCommand;
 import me.sinnoh.MasterPromote.Commands.MPTokenCommand;
-import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
 import me.sinnoh.MasterPromote.Metrics.Metrics;
 import me.sinnoh.MasterPromote.Metrics.Metrics.Graph;
 import net.milkbowl.vault.economy.Economy;

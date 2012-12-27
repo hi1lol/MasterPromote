@@ -2,7 +2,7 @@ package me.sinnoh.MasterPromote.Commands;
 
 import me.sinnoh.MasterPromote.MPConfig;
 import me.sinnoh.MasterPromote.MasterPromote;
-import me.sinnoh.MasterPromote.Events.PlayerPromoteEvent.PROMOTIONTYPE;
+import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent.PROMOTIONTYPE;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
