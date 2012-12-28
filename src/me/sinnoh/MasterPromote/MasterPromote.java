@@ -247,6 +247,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 	{
 		try
 		{
+			MPConfig.createdefaults();
 			MPConfig.loadYamls();
 			return true;
 		}catch(Exception e)

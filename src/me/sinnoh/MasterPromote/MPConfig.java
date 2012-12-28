@@ -21,14 +21,17 @@ public class MPConfig
 			if(!plugin.configFile.exists())
 			{
 				plugin.configFile.getParentFile().mkdirs();
+				plugin.configFile.createNewFile();
 			}
 			if(!plugin.messagesFile.exists())
 			{
 				plugin.messagesFile.getParentFile().mkdirs();
+				plugin.messagesFile.createNewFile();
 			}
 			if(!plugin.tokenFile.exists())
 			{
 				plugin.tokenFile.getParentFile().mkdirs();
+				plugin.tokenFile.createNewFile();
 			}
 		}
 		catch(Exception e)
