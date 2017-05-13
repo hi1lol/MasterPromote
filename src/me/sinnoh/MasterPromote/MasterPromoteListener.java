@@ -1,4 +1,3 @@
-
 package me.sinnoh.MasterPromote;
 
 import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent.PROMOTIONTYPE;
@@ -48,7 +47,7 @@ public class MasterPromoteListener implements Listener
                             ItemStack s = new ItemStack(Material.SIGN);
                             s.setAmount(1);
                             event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), s);
-                            event.getBlock().setTypeId(0);
+                            event.getBlock().setType(Material.AIR);
                 		}
                 	}
                     event.setLine(0, (ChatColor.GREEN) + "[Promote]");
@@ -61,7 +60,7 @@ public class MasterPromoteListener implements Listener
                 ItemStack s = new ItemStack(Material.SIGN);
                 s.setAmount(1);
                 event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), s);
-                event.getBlock().setTypeId(0);
+                event.getBlock().setType(Material.AIR);
             }
         }
     }
