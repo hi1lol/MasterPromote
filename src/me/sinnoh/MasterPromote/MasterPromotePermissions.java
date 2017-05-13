@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 
-import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
@@ -59,7 +58,7 @@ public class MasterPromotePermissions
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
+	
 	public void promote(Player player, String group, PROMOTIONTYPE type)
 	{
 		PlayerPromoteEvent	event = new PlayerPromoteEvent(player, group, type, activePermissions);
@@ -81,10 +80,10 @@ public class MasterPromotePermissions
 		{
 			//Bukkit.dispatchCommand(console, "pex user " + player.getName() + " group set " + group);
 			PermissionUser pexuser = PermissionsEx.getUser(player);
-			for(PermissionGroup g : pexuser.getGroups())
-			{
-				pexuser.removeGroup(g);
-			}
+			//for(PermissionGroup g : pexuser.getGroups())
+			//{
+			//	pexuser.removeGroup(g);
+			//}
 			pexuser.addGroup(group);
 		}
 		else if(activePermissions.equals("GroupManager"))
