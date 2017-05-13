@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
+import de.epiccraftec.ECControl.*;
 import me.sinnoh.MasterPromote.Api.MPPlugin;
 import me.sinnoh.MasterPromote.Api.PlayerPromoteEvent.PROMOTIONTYPE;
 import me.sinnoh.MasterPromote.Commands.MPApplyCommand;
@@ -61,6 +61,7 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
     
     public void prepareconfigfiles() //create/load the files
     {
+    	
 		configFile = new File(getDataFolder(), "config.yml");
 		messagesFile = new File(getDataFolder(), "messages.yml");
 		tokenFile = new File(getDataFolder(), "token.yml");
@@ -147,8 +148,8 @@ public class MasterPromote extends JavaPlugin implements MPPlugin
 							if(timeleft <=0)
 							{
 								String msg = messages.getString("PromotedAfterTime").replace("<group>", config.getString("Time.Group"));
-								Bukkit.getPlayer(playername).sendMessage(msg.replace("&", "\247"));
-								getPermissionsHandler().promote(Bukkit.getPlayer(playername), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
+								Bukkit.getPlayer(Main.getPlayerUUID(playername)).sendMessage(msg.replace("&", "\247"));
+								getPermissionsHandler().promote(Bukkit.getPlayer(Main.getPlayerUUID(playername)), config.getString("Time.Group"), PROMOTIONTYPE.TIME);
 								promotedPlayers.add(playername);
 							}
 							else

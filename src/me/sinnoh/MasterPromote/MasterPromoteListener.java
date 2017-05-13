@@ -81,9 +81,9 @@ public class MasterPromoteListener implements Listener
 	                {
 	                	if(!sign.getLine(2).equals(""))
 	                	{
-	                		if(plugin.economy.has(player.getName(), Double.valueOf(sign.getLine(2))))
+	                		if(plugin.economy.has(player, Double.valueOf(sign.getLine(2))))
 	                		{
-	                			plugin.economy.withdrawPlayer(player.getName(), Double.valueOf(sign.getLine(2)));
+	                			plugin.economy.withdrawPlayer(player, Double.valueOf(sign.getLine(2)));
 	                		}
 	                		else
 	                		{

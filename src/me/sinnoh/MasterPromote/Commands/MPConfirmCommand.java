@@ -32,9 +32,9 @@ public class MPConfirmCommand implements CommandExecutor
     				Double price = Double.parseDouble(rank[1]);
     				if(group.equals(group1))
     				{
-    					if(plugin.economy.has(player.getName(), price))
+    					if(plugin.economy.has(player, price))
     					{
-    						plugin.economy.withdrawPlayer(player.getName(), price);
+    						plugin.economy.withdrawPlayer(player, price);
     						plugin.getPermissionsHandler().promote(player, group, PROMOTIONTYPE.BOUGHT);
     						String msg = plugin.messages.getString("BoughtRank").replace("&", "\u00A7");
     						player.sendMessage(msg.replace("<group>", group));

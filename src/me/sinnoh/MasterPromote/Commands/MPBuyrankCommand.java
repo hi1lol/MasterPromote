@@ -33,7 +33,7 @@ public class MPBuyrankCommand implements CommandExecutor
         			{
         				if(player.hasPermission("MasterPromote.rank.buy." + group))
         				{
-        					if(plugin.economy.has(player.getName(), price))
+        					if(plugin.economy.has(player, price))
         					{
 			    				plugin.confirm.put(player, group);
 			    				String msg = plugin.messages.getString("BuyRank").replace("&", "\u00A7");

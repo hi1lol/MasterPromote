@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import de.epiccraftec.ECControl.Main;
+
 public class sUtil 
 {
 	
@@ -67,7 +69,7 @@ public class sUtil
 	{
 		try
 		{
-			Player player = Bukkit.getPlayer(playername);
+			Player player = Bukkit.getPlayer(Main.getPlayerUUID(playername));
 			if(player.isOnline())
 			{
 				return true;

@@ -59,6 +59,7 @@ public class MasterPromotePermissions
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void promote(Player player, String group, PROMOTIONTYPE type)
 	{
 		PlayerPromoteEvent	event = new PlayerPromoteEvent(player, group, type, activePermissions);
